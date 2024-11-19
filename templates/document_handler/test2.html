@@ -1,0 +1,9 @@
+<ul>
+  {% for document in documents %}
+  <li>
+    {{ document.name }}
+    <a href="{% url 'split_document' document.id %}">Split</a>
+    <a href="{% url 'create_embedding' document.id %}">Create Embedding</a>
+  </li>
+  {% endfor %}
+</ul>

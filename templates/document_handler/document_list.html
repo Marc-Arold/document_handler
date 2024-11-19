@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel - Uploaded Documents</title>
+    <style>
+      body,
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #f0f0f0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+
+      header {
+        background: #6c59b5;
+        color: white;
+        padding: 1em;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .document-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 80px;
+        width: 50%; /* To account for the fixed header */
+      }
+
+      .document-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 15px;
+        padding: 20px;
+        width: 100%; /* Three cards per row minus margin */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .document-title {
+        font-weight: bold;
+      }
+
+      a {
+        background-color: #8c7cb8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 15px;
+        text-decoration: none;
+      }
+      .list-documents {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Admin Panel - Embed Documents</h1>
+    </header>
+
+    <div class="document-container">
+      <!-- Example Document Card 1 -->
+
+      <ul class="list-documents">
+        {% for document in documents %}
+        <li>
+          <div class="document-card">
+            <p class="document-title">{{ document.name }}</p>
+
+            <div class="btn">
+              <a href="{% url 'split_document' document.id %}">Split</a>
+              <a href="{% url 'create_embedding' document.id %}"
+                >Create Embedding</a
+              >
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
